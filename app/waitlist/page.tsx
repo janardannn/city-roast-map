@@ -70,6 +70,7 @@ export default function WaitlistPage() {
 
       <footer className="waitlist-footer">
         <span>SWALPA WAIT MAADI.</span>
+        <a href="/preview">TEAM ACCESS</a>
         <span>PUBLIC DROP → SOON</span>
       </footer>
     </main>

@@ -326,6 +326,16 @@ footer p { margin: 0; color: #5f6670; font-size: 8px; font-weight: 800; letter-s
 .waitlist-success a { width: 100%; min-height: 50px; display: grid; place-items: center; margin-top: 36px; border: 1px solid #353b45; border-radius: 13px; color: #d9dbd6; font-size: 9px; font-weight: 800; letter-spacing: .07em; text-decoration: none; }
 .waitlist-success a:hover { border-color: var(--lime); color: var(--lime); }
 .waitlist-footer { min-height: 70px; position: relative; z-index: 2; display: flex; align-items: center; justify-content: space-between; padding: 0 5vw; border-top: 1px solid var(--line); color: #5d646f; font-size: 8px; font-weight: 800; letter-spacing: .11em; }
+.waitlist-footer a { color: #707782; text-decoration: none; }
+.waitlist-footer a:hover { color: var(--lime); }
+.access-denied-shell { min-height: 100vh; display: grid; place-items: center; padding: 20px; background-color: #08090b; background-image: linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px); background-size: 42px 42px; }
+.access-denied-card { width: min(480px, 100%); display: flex; flex-direction: column; align-items: flex-start; border: 1px solid #353b45; border-radius: 26px; background: #14171c; box-shadow: 0 28px 90px rgba(0,0,0,.55), inset 0 3px 0 var(--hood-accent); padding: 38px; }
+.access-denied-card > span { width: 48px; height: 48px; display: grid; place-items: center; border-radius: 15px; background: #232730; font-size: 20px; }
+.access-denied-card > p { margin: 26px 0 8px; color: var(--hood-accent); font-size: 9px; font-weight: 800; letter-spacing: .12em; }
+.access-denied-card h1 { font-size: clamp(44px, 8vw, 68px); }
+.access-denied-card small { margin: 24px 0 30px; color: #858c97; font-size: 11px; line-height: 1.55; }
+.access-denied-card a { width: 100%; min-height: 50px; display: grid; place-items: center; border-radius: 13px; background: var(--hood-accent); color: #090a0c; font-size: 9px; font-weight: 900; letter-spacing: .07em; text-decoration: none; }
+.access-denied-card .signout-link { min-height: 40px; margin-top: 8px; border: 1px solid #353b45; background: transparent; color: #858c97; }
 
 .modal-backdrop { position: fixed; inset: 0; z-index: 30; display: grid; place-items: center; padding: 20px; background: rgba(0,0,0,.78); backdrop-filter: blur(12px); }
 .modal { position: relative; width: min(500px, 100%); border: 1px solid #363b45; border-radius: 24px; background: #15181d; box-shadow: 0 22px 80px rgba(0,0,0,.5), inset 0 3px 0 var(--hood-accent); padding: 34px; }
