@@ -312,41 +312,43 @@ export default function Home() {
   }
 
   return (
-    <main className="site-shell" style={{ "--hood-accent": selected.accent } as React.CSSProperties}>
+    <main className="site-shell arcade-map" style={{ "--hood-accent": selected.accent } as React.CSSProperties}>
       <div className="noise" aria-hidden="true" />
       <header className="topbar">
         <a className="brand" href="#top" aria-label="Namma Roast home">
-          <span className="brand-mark">🔥</span>
-          <span>NAMMA ROAST</span>
-          <em>BLR BETA</em>
+          <span className="brand-mark" aria-hidden="true">🔥</span>
+          <span>NAMMA<br />ROAST</span>
         </a>
         <div className="city-switcher" aria-label="Current city">
           <span className="live-dot" />
-          BENGALURU IS ONLINE
+          LIVE FROM BLR
         </div>
-        <a className="nav-action" href="/waitlist">JOIN WAITLIST →</a>
+        <p className="map-edition">MAP EDITION · 2026</p>
       </header>
 
       <section className="playground" id="top" aria-label="Bengaluru neighborhood roast map">
         <aside className="intro-panel">
           <div>
-            <p className="eyebrow"><span /> 8 HOODS LOADED</p>
-            <h1>HOW BAD IS<br />YOUR AREA?</h1>
-            <p className="hero-note">Tap your hood. Get roasted. Forward it to the family group before they disown you.</p>
+            <p className="eyebrow"><span>★</span> BANGALORE HAS OPINIONS</p>
+            <h1>NAMMA<br /><em>MAP</em></h1>
+            <p className="hero-note">Pick your area. Bangalore tribalism needs data.</p>
           </div>
           <div className="intro-actions">
-            <button onClick={nextNeighborhood}>I’M FEELING UNLUCKY <span>↻</span></button>
-            <p>Swalpa adjust maadi.<br />Roast is free.</p>
+            <div className="map-roast-meter">
+              <div><span>ROAST LEVEL</span><b>DANGEROUSLY LOCAL</b></div>
+              <p aria-hidden="true"><i /><i /><i /><i /><i /><i /><i /><i /></p>
+            </div>
+            <button onClick={nextNeighborhood}>RANDOM AREA <span>▶</span></button>
           </div>
         </aside>
 
         <div className="map-stage">
           <div className="map-toolbar">
             <div>
-              <p className="panel-label">NAMMA BENGALURU</p>
-              <p className="map-hint">Tap a glowing hood</p>
+              <p className="panel-label">PLAYER 01 / PICK YOUR AREA</p>
+              <p className="map-hint">Bangalore tribalism needs coordinates</p>
             </div>
-            <div className="legend"><span /> LIVE BEEF</div>
+            <div className="legend"><span /> PRESS START</div>
           </div>
           <div className="map-wrap">
             <div className="radar-ring ring-one" aria-hidden="true" />

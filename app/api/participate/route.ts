@@ -66,11 +66,16 @@ export async function POST(request: Request) {
       const email = typeof body.email === "string" ? body.email.trim().toLowerCase().slice(0, 180) : "";
       const city = typeof body.city === "string" ? body.city.trim().slice(0, 80) : "Bengaluru";
       const source = typeof body.source === "string" ? body.source.trim().slice(0, 80) : "waitlist-page";
+      const name = typeof body.name === "string" ? body.name.trim().slice(0, 100) : "";
+      const area = typeof body.area === "string" ? body.area.trim().slice(0, 100) : "";
+      const profileUrl = typeof body.profile === "string" ? body.profile.trim().slice(0, 400) : "";
+      const consentVersion = body.consent === "true" ? "2026-07-12-v1" : "";
       if (!/^\S+@\S+\.\S+$/.test(email)) return json({ error: "Valid email required" }, 400);
+      if (!name || !area || !consentVersion) return json({ error: "Name, area and consent required" }, 400);
 
       await db
-        .prepare("INSERT OR IGNORE INTO waitlist (id, email, city, source, created_at) VALUES (?, ?, ?, ?, ?)")
-        .bind(crypto.randomUUID(), email, city || "Bengaluru", source || "waitlist-page", Date.now())
+        .prepare("INSERT INTO waitlist (id, email, city, source, name, area, profile_url, consent_version, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) ON CONFLICT(email) DO UPDATE SET city = excluded.city, source = excluded.source, name = excluded.name, area = excluded.area, profile_url = excluded.profile_url, consent_version = excluded.consent_version")
+        .bind(crypto.randomUUID(), email, city || "Bengaluru", source || "waitlist-page", name, area, profileUrl || null, consentVersion, Date.now())
         .run();
       return json({ ok: true });
     }
