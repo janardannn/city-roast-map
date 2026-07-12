@@ -7,8 +7,8 @@ export async function generateMetadata(): Promise<Metadata> {
   const host = requestHeaders.get("x-forwarded-host") ?? requestHeaders.get("host") ?? "localhost:3000";
   const protocol = requestHeaders.get("x-forwarded-proto") ?? (host.includes("localhost") ? "http" : "https");
   const origin = `${protocol}://${host}`;
-  const title = "City Roast Map — Bengaluru, Explain Yourself";
-  const description = "A locals-only map of Bengaluru where rent pain, commute chaos, and food lore become neighborhood roast cards.";
+  const title = "Namma Roast — How Bad Is Your Area?";
+  const description = "Tap your Bengaluru hood, get roasted, and send the damage straight to the group chat.";
 
   return {
     metadataBase: new URL(origin),
@@ -20,9 +20,9 @@ export async function generateMetadata(): Promise<Metadata> {
       description,
       type: "website",
       url: origin,
-      images: [{ url: `${origin}/og.png`, width: 1731, height: 909, alt: "City Roast Map Bengaluru share card" }],
+      images: [{ url: `${origin}/og-v2.png`, width: 1731, height: 909, alt: "Namma Roast Bengaluru share card" }],
     },
-    twitter: { card: "summary_large_image", title, description, images: [`${origin}/og.png`] },
+    twitter: { card: "summary_large_image", title, description, images: [`${origin}/og-v2.png`] },
   };
 }
 

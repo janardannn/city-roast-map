@@ -312,50 +312,47 @@ export default function Home() {
   }
 
   return (
-    <main className="site-shell">
+    <main className="site-shell" style={{ "--hood-accent": selected.accent } as React.CSSProperties}>
+      <div className="noise" aria-hidden="true" />
       <header className="topbar">
-        <a className="brand" href="#top" aria-label="City Roast Map home">
-          <span className="brand-mark">CR</span>
-          <span>CITY ROAST MAP</span>
+        <a className="brand" href="#top" aria-label="Namma Roast home">
+          <span className="brand-mark">🔥</span>
+          <span>NAMMA ROAST</span>
+          <em>BLR BETA</em>
         </a>
         <div className="city-switcher" aria-label="Current city">
           <span className="live-dot" />
-          BENGALURU
-          <span className="city-count">01 / 01</span>
+          BENGALURU IS ONLINE
         </div>
-        <button className="nav-action" onClick={() => setModal("city")}>
-          REQUEST YOUR CITY ↗
+        <button className="nav-action" onClick={() => setModal(signedIn ? "city" : "signup")}>
+          + BRING MY CITY
         </button>
       </header>
 
-      <section className="hero" id="top">
-        <div className="hero-copy">
-          <p className="eyebrow">THE LOCALS-ONLY MAP OF BENGALURU</p>
-          <h1>
-            CHOOSE YOUR AREA.<br />
-            <span>GET PERSONALLY ATTACKED.</span>
-          </h1>
-          <p className="hero-note">
-            Rents, commute pain and food lore—turned into the roast your group chat was already writing.
-          </p>
-        </div>
-        <div className="hero-stamp" aria-label="Roasts refined by local votes">
-          <span>LOCAL VOTES</span>
-          <strong>→</strong>
-          <span>SHARPER ROASTS</span>
-        </div>
-      </section>
+      <section className="playground" id="top" aria-label="Bengaluru neighborhood roast map">
+        <aside className="intro-panel">
+          <div>
+            <p className="eyebrow"><span /> 8 HOODS LOADED</p>
+            <h1>HOW BAD IS<br />YOUR AREA?</h1>
+            <p className="hero-note">Tap your hood. Get roasted. Forward it to the family group before they disown you.</p>
+          </div>
+          <div className="intro-actions">
+            <button onClick={nextNeighborhood}>I’M FEELING UNLUCKY <span>↻</span></button>
+            <p>Swalpa adjust maadi.<br />Roast is free.</p>
+          </div>
+        </aside>
 
-      <section className="experience" aria-label="Bengaluru neighborhood roast map">
-        <div className="map-panel">
+        <div className="map-stage">
           <div className="map-toolbar">
             <div>
-              <p className="panel-label">BENGALURU / NEIGHBOURHOOD HEAT</p>
-              <p className="map-hint">Tap a labelled ward to pick a fight</p>
+              <p className="panel-label">NAMMA BENGALURU</p>
+              <p className="map-hint">Tap a glowing hood</p>
             </div>
-            <div className="legend"><span /> ROASTED ZONES</div>
+            <div className="legend"><span /> LIVE BEEF</div>
           </div>
           <div className="map-wrap">
+            <div className="radar-ring ring-one" aria-hidden="true" />
+            <div className="radar-ring ring-two" aria-hidden="true" />
             {mapData ? (
               <svg
                 className="bangalore-map"
@@ -373,8 +370,8 @@ export default function Home() {
                       <path
                         key={`${feature.properties.KGISWardName}-${index}`}
                         d={d}
-                        className={hood ? "ward featured-ward" : "ward"}
-                        style={hood ? { fill: isSelected ? selected.accent : "#7656D6" } : undefined}
+                        className={hood ? `ward featured-ward ${isSelected ? "selected" : ""}` : "ward"}
+                        style={hood && isSelected ? { fill: selected.accent } : undefined}
                         onClick={hood ? () => setSelectedId(hood.id) : undefined}
                         aria-label={hood ? `Select ${hood.name}` : undefined}
                       />
@@ -393,91 +390,79 @@ export default function Home() {
                         role="button"
                         aria-label={`Open ${neighborhood.name} roast`}
                       >
-                        <circle r={active ? 7 : 5} />
-                        <text y={-11}>{neighborhood.name.toUpperCase()}</text>
+                        <circle r={active ? 8 : 5} />
+                        <text y={-12}>{neighborhood.name.toUpperCase()}</text>
                       </g>
                     );
                   })}
                 </g>
               </svg>
             ) : (
-              <div className="map-loading" aria-live="polite">LOADING BENGALURU’S BOUNDARIES…</div>
+              <div className="map-loading" aria-live="polite">LOCATING THE DRAMA…</div>
             )}
-            <div className="map-coordinate">12.9716° N / 77.5946° E</div>
+            <div className="map-coordinate">12.9716° N · 77.5946° E</div>
+            <div className="map-tip"><span>↖</span> choose violence</div>
           </div>
         </div>
 
-        <article className="roast-card" style={{ "--hood-accent": selected.accent } as React.CSSProperties}>
+        <article className="roast-card">
           <div className="card-topline">
-            <span>ROAST NO. {String(neighborhoods.findIndex((n) => n.id === selected.id) + 1).padStart(2, "0")}</span>
-            <span className="accuracy">{selected.heat}% ACCURATE*</span>
+            <span className="card-index">#{String(neighborhoods.findIndex((n) => n.id === selected.id) + 1).padStart(2, "0")}</span>
+            <span className="accuracy"><i /> {selected.heat}% MATCH</span>
           </div>
           <div className="hood-title">
             <p>{selected.kicker}</p>
             <h2>{selected.name}</h2>
           </div>
-          <div className="roast-quote">“{selected.roast}”</div>
+          <div className="roast-quote">{selected.roast}</div>
           <div className="signal-list">
-            <div><span>RENT CHECK</span><strong>{selected.rent}</strong></div>
-            <div><span>COMMUTE PAIN</span><strong>{selected.commute}</strong></div>
-            <div><span>LOCAL LORE</span><strong>{selected.food}</strong></div>
+            <div><span>₹</span><p>RENT</p><strong>{selected.rent}</strong></div>
+            <div><span>⌛</span><p>COMMUTE</p><strong>{selected.commute}</strong></div>
+            <div><span>☕</span><p>LOCAL LORE</p><strong>{selected.food}</strong></div>
           </div>
           <div className="vote-row">
             <button className={`vote-button ${voted[selected.id] ? "is-voted" : ""}`} onClick={() => void castVote()}>
-              {voted[selected.id] ? "✓ PAINFULLY ACCURATE" : "THIS IS PAINFULLY ACCURATE"}
+              {voted[selected.id] ? "✓ I FELT THAT" : "OOF. TOO ACCURATE"}
             </button>
-            <span>{formatCount(selected.votes + (voteLift[selected.id] ?? 0))} locals agree</span>
+            <span>{formatCount(selected.votes + (voteLift[selected.id] ?? 0))}<small>locals felt attacked</small></span>
           </div>
           <div className="card-actions">
-            <button onClick={() => void shareRoast()}>SHARE THE DAMAGE ↗</button>
-            <button onClick={() => setModal(signedIn ? "defend" : "signup")}>DEFEND YOUR HOOD</button>
+            <button className="share-action" onClick={() => void shareRoast()}>SEND TO GROUP CHAT <span>↗</span></button>
+            <button onClick={() => setModal(signedIn ? "defend" : "signup")}>NAH, DEFEND MY HOOD</button>
           </div>
           <div className="card-footer">
-            <span>{formatCount(selected.shares)} SHARES</span>
-            <span>*COMMUNITY PULSE, NOT A SCIENCE</span>
+            <span>{formatCount(selected.shares)} forwards</span>
+            <button onClick={nextNeighborhood}>NEXT ROAST →</button>
           </div>
         </article>
+
+        <nav className="hood-dock" aria-label="Choose a neighborhood">
+          <span className="dock-label">PICK YOUR HOOD</span>
+          <div className="hood-tabs">
+            {neighborhoods.map((neighborhood) => (
+              <button
+                key={neighborhood.id}
+                className={neighborhood.id === selected.id ? "active" : ""}
+                onClick={() => setSelectedId(neighborhood.id)}
+              >
+                {neighborhood.name}
+              </button>
+            ))}
+          </div>
+        </nav>
       </section>
 
-      <section className="hood-strip" aria-label="Choose a neighborhood">
-        <div className="strip-title">
-          <span>01</span>
-          <strong>PICK YOUR HOOD</strong>
-        </div>
-        <div className="hood-tabs">
-          {neighborhoods.map((neighborhood) => (
-            <button
-              key={neighborhood.id}
-              className={neighborhood.id === selected.id ? "active" : ""}
-              onClick={() => setSelectedId(neighborhood.id)}
-            >
-              {neighborhood.name}
-            </button>
-          ))}
-        </div>
-        <button className="next-button" onClick={nextNeighborhood} aria-label="Next neighborhood">→</button>
-      </section>
-
-      <section className="proof-section">
-        <div>
-          <p className="eyebrow">THE CITY IS KEEPING SCORE</p>
-          <h2>ONE MAP.<br />ENDLESS BEEF.</h2>
-        </div>
-        <div className="proof-grid">
-          <div><strong>18.4K</strong><span>DEMO CARD VIEWS</span></div>
-          <div><strong>6.9K</strong><span>GROUP CHAT SHARES</span></div>
-          <div><strong>37%</strong><span>VISIT → VOTE</span></div>
-        </div>
-        <div className="source-note">
-          <span>DATA DESK</span>
-          <p>Ward geometry: BBMP 2022 delimitation via DataMeet. Traffic context: TomTom 2025 Bengaluru index. Rent bands are editorial demo estimates and should be refreshed before launch.</p>
-        </div>
+      <section className="city-pulse">
+        <div className="pulse-title"><span>●</span> RIGHT NOW IN THE GROUP CHAT</div>
+        <div className="pulse-item"><strong>HSR</strong><span>most defended</span><em>2,841 votes</em></div>
+        <div className="pulse-item"><strong>KORAMANGALA</strong><span>starting fights</span><em>1,288 shares</em></div>
+        <div className="pulse-item"><strong>WHITEFIELD</strong><span>still loading…</span><em>ETA unknown</em></div>
       </section>
 
       <footer>
-        <div className="brand footer-brand"><span className="brand-mark">CR</span><span>CITY ROAST MAP</span></div>
-        <p>BUILT WITH LOVE. DELIVERED WITH DISRESPECT.</p>
-        <a href="https://projects.datameet.org/Municipal_Spatial_Data/bangalore/" target="_blank" rel="noreferrer">MAP SOURCE ↗</a>
+        <div className="brand footer-brand"><span className="brand-mark">🔥</span><span>NAMMA ROAST</span></div>
+        <p>MADE IN BENGALURU TRAFFIC</p>
+        <a href="https://projects.datameet.org/Municipal_Spatial_Data/bangalore/" target="_blank" rel="noreferrer">MAP DATA ↗</a>
       </footer>
 
       {modal && (
