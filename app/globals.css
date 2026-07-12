@@ -449,6 +449,9 @@ footer p { margin: 0; color: #5f6670; font-size: 8px; font-weight: 800; letter-s
 .arcade-topbar { position: relative; z-index: 10; min-height: 76px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px; padding: 14px clamp(18px,4vw,64px); border-bottom: 4px solid var(--arc-line); background: var(--arc-deep); box-shadow: 0 4px 0 var(--arc-shadow); }
 .arcade-brand { display: flex; align-items: center; gap: 10px; justify-self: start; color: var(--arc-cream); font: .66rem/1.45 var(--font-pixel-display); text-decoration: none; }
 .arcade-brand-fire { width: 42px; height: 42px; display: grid; place-items: center; border: 3px solid var(--arc-red); background: var(--arc-surface); box-shadow: 4px 4px 0 var(--arc-red); font-size: 1.25rem; }
+.arcade-brand-avatar,.brand-mascot-image { width: 100%; height: 100%; display: block; object-fit: cover; object-position: 52% 12%; image-rendering: pixelated; }
+.arcade-map-link { padding: 10px 12px; border: 2px solid var(--arc-gold); color: var(--arc-gold); text-decoration: none; }
+.arcade-map-link:hover { color: var(--arc-deep); background: var(--arc-gold); }
 .arcade-live { display: flex; align-items: center; gap: 9px; color: var(--arc-gold); font: 700 .75rem var(--font-pixel-ui); letter-spacing: .04em; }
 .arcade-live i { width: 8px; height: 8px; background: var(--arc-hot); box-shadow: 0 0 0 3px var(--arc-raised); animation: arc-blink 1.2s steps(2,end) infinite; }
 .arcade-edition { justify-self: end; margin: 0; color: var(--arc-muted); font: .65rem var(--font-pixel-ui); }
@@ -537,6 +540,7 @@ footer p { margin: 0; color: #5f6670; font-size: 8px; font-weight: 800; letter-s
 .arcade-map .topbar { min-height: 76px; height: auto; grid-template-columns: 1fr auto 1fr; padding: 14px clamp(18px,4vw,64px); border-bottom: 4px solid var(--arc-line); background: var(--arc-deep); box-shadow: 0 4px 0 var(--arc-shadow); }
 .arcade-map .brand { gap: 10px; color: var(--arc-cream); font: .66rem/1.45 var(--font-pixel-display); letter-spacing: 0; }
 .arcade-map .brand-mark { width: 42px; height: 42px; border: 3px solid var(--arc-red); border-radius: 0; background: var(--arc-surface); box-shadow: 4px 4px 0 var(--arc-red); font-size: 1.25rem; }
+.arcade-map .brand-mark { overflow: hidden; padding: 0; }
 .arcade-map .city-switcher { color: var(--arc-gold); font: 700 .75rem var(--font-pixel-ui); letter-spacing: .04em; }
 .arcade-map .live-dot { width: 8px; height: 8px; border-radius: 0; background: var(--arc-hot); box-shadow: 0 0 0 3px var(--arc-raised); }
 .map-edition { justify-self: end; margin: 0; color: var(--arc-muted); font: .65rem var(--font-pixel-ui); }
@@ -550,6 +554,12 @@ footer p { margin: 0; color: #5f6670; font-size: 8px; font-weight: 800; letter-s
 .arcade-map .intro-panel h1 { color: var(--arc-cream); font: clamp(2.1rem,3.4vw,4rem)/1.16 var(--font-pixel-display); letter-spacing: -.07em; text-shadow: 5px 5px 0 var(--arc-shadow),8px 8px 0 var(--arc-line-bright); }
 .arcade-map .intro-panel h1 em { color: var(--arc-hot); font-style: normal; }
 .arcade-map .hero-note { color: var(--arc-muted); font-size: 1.35rem; line-height: 1.25; }
+.arcade-map .map-mascot { display: grid; grid-template-columns: 76px 1fr; align-items: center; gap: 12px; margin-top: 24px; border: 3px solid var(--arc-gold); background: var(--arc-deep); box-shadow: 5px 5px 0 var(--arc-red); }
+.arcade-map .map-mascot > img { width: 76px; height: 92px; display: block; object-fit: cover; object-position: 52% 10%; border-right: 3px solid var(--arc-gold); image-rendering: pixelated; }
+.arcade-map .map-mascot p { display: grid; gap: 4px; margin: 0; padding: 8px 8px 8px 0; }
+.arcade-map .map-mascot span { color: var(--arc-gold); font: .48rem var(--font-pixel-ui); }
+.arcade-map .map-mascot strong { color: var(--arc-cream); font: .72rem var(--font-pixel-display); }
+.arcade-map .map-mascot small { color: var(--arc-muted); font-size: .82rem; line-height: 1.15; }
 .map-roast-meter { padding-top: 16px; border-top: 3px dashed var(--arc-line); }
 .map-roast-meter > div { display: flex; justify-content: space-between; gap: 8px; color: var(--arc-muted); font: .5rem/1.5 var(--font-pixel-ui); }
 .map-roast-meter b { color: var(--arc-orange); text-align: right; }

@@ -5,7 +5,7 @@ import MapClient from "./map-client";
 
 export const dynamic = "force-dynamic";
 
-const previewEmails = new Set(["janardanhazarika20@gmail.com"]);
+const previewEmails = new Set(["janardanhazarika20@gmail.com", "jorianh25@gmail.com"]);
 
 export default async function Home() {
   const runtime = env as unknown as { PUBLIC_RELEASED?: string };

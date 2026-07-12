@@ -17,6 +17,8 @@ test("builds the Namma Roast waitlist with the requested fields", async () => {
   assert.match(page, /name="linkedinUrl"/);
   assert.match(page, /name="xUrl"/);
   assert.match(page, /public profiles I submit/i);
+  assert.match(page, /namma-roast-host-laughing-8bit\.png/);
+  assert.match(page, /OPEN MAP/);
   assert.doesNotMatch(page, /TEAM ACCESS/);
   assert.match(layout, /Namma Roast — Bangalore Has Opinions/);
 });

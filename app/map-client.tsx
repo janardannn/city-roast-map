@@ -316,7 +316,7 @@ export default function Home() {
       <div className="noise" aria-hidden="true" />
       <header className="topbar">
         <a className="brand" href="#top" aria-label="Namma Roast home">
-          <span className="brand-mark" aria-hidden="true">🔥</span>
+          <span className="brand-mark" aria-hidden="true"><img className="brand-mascot-image" src="/namma-roast-host-laughing-8bit.png" alt="" /></span>
           <span>NAMMA<br />ROAST</span>
         </a>
         <div className="city-switcher" aria-label="Current city">
@@ -332,6 +332,10 @@ export default function Home() {
             <p className="eyebrow"><span>★</span> BANGALORE HAS OPINIONS</p>
             <h1>NAMMA<br /><em>MAP</em></h1>
             <p className="hero-note">Pick your area. Bangalore tribalism needs data.</p>
+            <div className="map-mascot">
+              <img src="/namma-roast-host-laughing-8bit.png" alt="Kishan, the pixel-art Namma Roast host" />
+              <p><span>YOUR HOST</span><strong>KISHAN</strong><small>Armed with Bengaluru data.</small></p>
+            </div>
           </div>
           <div className="intro-actions">
             <div className="map-roast-meter">
@@ -460,7 +464,7 @@ export default function Home() {
       </section>
 
       <footer>
-        <div className="brand footer-brand"><span className="brand-mark">🔥</span><span>NAMMA ROAST</span></div>
+        <div className="brand footer-brand"><span className="brand-mark"><img className="brand-mascot-image" src="/namma-roast-host-laughing-8bit.png" alt="" /></span><span>NAMMA ROAST</span></div>
         <p>MADE IN BENGALURU TRAFFIC</p>
         <div className="footer-links"><a href="/waitlist">JOIN WAITLIST</a><a href="https://projects.datameet.org/Municipal_Spatial_Data/bangalore/" target="_blank" rel="noreferrer">MAP DATA ↗</a></div>
       </footer>

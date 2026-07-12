@@ -74,11 +74,11 @@ export default function WaitlistPage() {
 
       <header className="arcade-topbar">
         <a className="arcade-brand" href="#top" aria-label="Namma Roast home">
-          <span className="arcade-brand-fire" aria-hidden="true">🔥</span>
+          <span className="arcade-brand-fire" aria-hidden="true"><img className="arcade-brand-avatar" src="/namma-roast-host-laughing-8bit.png" alt="" /></span>
           <span>NAMMA<br />ROAST</span>
         </a>
         <div className="arcade-live"><i aria-hidden="true" /> LIVE FROM BLR</div>
-        <p className="arcade-edition">BANGALORE EDITION · 2026</p>
+        <a className="arcade-edition arcade-map-link" href="/preview">OPEN MAP ↗</a>
       </header>
 
       <section className="arcade-stage" id="top">

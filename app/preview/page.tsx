@@ -3,7 +3,7 @@ import { chatGPTSignOutPath, requireChatGPTUser } from "../chatgpt-auth";
 
 export const dynamic = "force-dynamic";
 
-const previewEmails = new Set(["janardanhazarika20@gmail.com"]);
+const previewEmails = new Set(["janardanhazarika20@gmail.com", "jorianh25@gmail.com"]);
 
 export default async function PreviewAccessPage() {
   const user = await requireChatGPTUser("/preview");
