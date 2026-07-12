@@ -11,14 +11,23 @@ const areas = [
   "Jayanagar",
   "Malleswaram",
   "BTM Layout",
-  "Not listed (suspicious)",
+  "Marathahalli",
+  "Electronic City",
+  "JP Nagar",
+  "Banashankari",
+  "Hebbal",
+  "Yelahanka",
+  "Frazer Town",
+  "Rajajinagar",
+  "Other Bengaluru locality",
 ];
 
 export default function WaitlistPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [area, setArea] = useState("");
-  const [profile, setProfile] = useState("");
+  const [locality, setLocality] = useState("");
+  const [linkedinUrl, setLinkedinUrl] = useState("");
+  const [xUrl, setXUrl] = useState("");
   const [consent, setConsent] = useState(false);
   const [status, setStatus] = useState<"idle" | "saving" | "done" | "error">("idle");
 
@@ -34,10 +43,11 @@ export default function WaitlistPage() {
           action: "waitlist",
           name,
           email,
-          area,
+          locality,
           city: "Bengaluru",
-          profile,
-          consent: String(consent),
+          linkedinUrl,
+          xUrl,
+          consent,
           source: "arcade-landing",
         }),
       });
@@ -46,6 +56,16 @@ export default function WaitlistPage() {
     } catch {
       setStatus("error");
     }
+  }
+
+  function resetForm() {
+    setName("");
+    setEmail("");
+    setLocality("");
+    setLinkedinUrl("");
+    setXUrl("");
+    setConsent(false);
+    setStatus("idle");
   }
 
   return (
@@ -87,8 +107,8 @@ export default function WaitlistPage() {
               <div className="arcade-success-icon" aria-hidden="true">✓</div>
               <p>PLAYER LOCKED IN</p>
               <h2>YOU ASKED<br />FOR THIS.</h2>
-              <p>{name}, {area} has entered the chat. Your roast is warming up.</p>
-              <a href="/preview">TEAM ACCESS</a>
+              <p>{name}, {locality} has entered the chat. Your roast is warming up.</p>
+              <button type="button" onClick={resetForm}>ADD ANOTHER VICTIM</button>
             </section>
           ) : (
             <>
@@ -100,17 +120,18 @@ export default function WaitlistPage() {
               <form onSubmit={joinWaitlist}>
                 <label className="arcade-field"><span>01 / WHAT DO WE CALL YOU?</span><input name="name" autoComplete="given-name" placeholder="Your name" value={name} onChange={(event) => setName(event.target.value)} required /></label>
                 <label className="arcade-field"><span>02 / WHERE DO WE SEND THE DAMAGE?</span><input name="email" type="email" autoComplete="email" placeholder="you@email.com" value={email} onChange={(event) => setEmail(event.target.value)} required /></label>
-                <label className="arcade-field"><span>03 / PICK YOUR BANGALORE AREA</span><span className="arcade-select-wrap"><select name="area" value={area} onChange={(event) => setArea(event.target.value)} required><option value="">Choose your area...</option>{areas.map((item) => <option key={item}>{item}</option>)}</select></span></label>
+                <label className="arcade-field"><span>03 / PICK YOUR BANGALORE AREA</span><span className="arcade-select-wrap"><select name="locality" value={locality} onChange={(event) => setLocality(event.target.value)} required><option value="">Choose your area...</option>{areas.map((item) => <option key={item}>{item}</option>)}</select></span></label>
 
                 <details className="arcade-bonus">
                   <summary><span>+ ADD YOUR INTERNET PERSONALITY</span><b>OPTIONAL</b></summary>
-                  <label className="arcade-field"><span>X / LINKEDIN / GITHUB / WEBSITE</span><input name="profile" type="url" inputMode="url" placeholder="https://..." value={profile} onChange={(event) => setProfile(event.target.value)} /></label>
+                  <label className="arcade-field"><span>LINKEDIN</span><input name="linkedinUrl" type="url" inputMode="url" placeholder="https://linkedin.com/in/..." pattern="https://(www\\.)?linkedin\\.com/in/.*" value={linkedinUrl} onChange={(event) => setLinkedinUrl(event.target.value)} /></label>
+                  <label className="arcade-field"><span>X / TWITTER</span><input name="xUrl" type="url" inputMode="url" placeholder="https://x.com/..." pattern="https://(www\\.)?(x\\.com|twitter\\.com)/.*" value={xUrl} onChange={(event) => setXUrl(event.target.value)} /></label>
                 </details>
 
-                <label className="arcade-consent"><input name="consent" type="checkbox" checked={consent} onChange={(event) => setConsent(event.target.checked)} required /><span aria-hidden="true" className="arcade-check" /><span>I’m okay with a playful roast using only what I enter or link here.</span></label>
-                {status === "error" && <p className="arcade-form-error" role="alert">Check the three fields and consent box, guru.</p>}
+                <label className="arcade-consent"><input name="consent" type="checkbox" checked={consent} onChange={(event) => setConsent(event.target.checked)} required /><span aria-hidden="true" className="arcade-check" /><span>I opt in to research of the public profiles I submit and my locality to generate a playful personalized roast. No account matching beyond these links.</span></label>
+                {status === "error" && <p className="arcade-form-error" role="alert">Check the required fields, profile URLs and opt-in box, guru.</p>}
                 <button className="arcade-roast-button" type="submit" disabled={status === "saving"}><span>{status === "saving" ? "LOCKING PLAYER…" : "ROAST ME, BANGALORE"}</span><span aria-hidden="true">▶</span></button>
-                <p className="arcade-trust"><span aria-hidden="true">♥</span> No private digging. No sensitive stuff. Just vibes.</p>
+                <p className="arcade-trust"><span aria-hidden="true">♥</span> Submitted public profiles only. No sensitive traits. Just vibes.</p>
               </form>
             </>
           )}

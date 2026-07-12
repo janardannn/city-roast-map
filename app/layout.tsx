@@ -7,7 +7,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const host = requestHeaders.get("x-forwarded-host") ?? requestHeaders.get("host") ?? "localhost:3000";
   const protocol = requestHeaders.get("x-forwarded-proto") ?? (host.includes("localhost") ? "http" : "https");
   const origin = `${protocol}://${host}`;
-  const title = "Namma Roast — How Bad Is Your Area?";
+  const title = "Namma Roast — Bangalore Has Opinions";
   const description = "Tap your Bengaluru hood, get roasted, and send the damage straight to the group chat.";
 
   return {

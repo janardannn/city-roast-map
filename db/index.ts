@@ -15,7 +15,7 @@ export async function ensureSchema(db: D1Database) {
     db.prepare("CREATE UNIQUE INDEX IF NOT EXISTS votes_participant_neighborhood_idx ON votes(participant_id, neighborhood)"),
     db.prepare("CREATE TABLE IF NOT EXISTS submissions (id INTEGER PRIMARY KEY AUTOINCREMENT, participant_id TEXT NOT NULL, neighborhood TEXT NOT NULL, message TEXT NOT NULL, created_at INTEGER NOT NULL)"),
     db.prepare("CREATE TABLE IF NOT EXISTS city_requests (id INTEGER PRIMARY KEY AUTOINCREMENT, participant_id TEXT NOT NULL, message TEXT NOT NULL, created_at INTEGER NOT NULL)"),
-    db.prepare("CREATE TABLE IF NOT EXISTS waitlist (id TEXT PRIMARY KEY, email TEXT NOT NULL, city TEXT NOT NULL, source TEXT NOT NULL, name TEXT, area TEXT, profile_url TEXT, consent_version TEXT, created_at INTEGER NOT NULL)"),
+    db.prepare("CREATE TABLE IF NOT EXISTS waitlist (id TEXT PRIMARY KEY, email TEXT NOT NULL, city TEXT NOT NULL, source TEXT NOT NULL, name TEXT, area TEXT, profile_url TEXT, locality TEXT, linkedin_url TEXT, x_url TEXT, consent_version TEXT, created_at INTEGER NOT NULL)"),
     db.prepare("CREATE UNIQUE INDEX IF NOT EXISTS waitlist_email_idx ON waitlist(email)"),
   ]);
 }
