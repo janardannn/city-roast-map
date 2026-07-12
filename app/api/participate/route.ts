@@ -62,6 +62,19 @@ export async function POST(request: Request) {
     const db = getD1();
     await ensureSchema(db);
 
+    if (action === "waitlist") {
+      const email = typeof body.email === "string" ? body.email.trim().toLowerCase().slice(0, 180) : "";
+      const city = typeof body.city === "string" ? body.city.trim().slice(0, 80) : "Bengaluru";
+      const source = typeof body.source === "string" ? body.source.trim().slice(0, 80) : "waitlist-page";
+      if (!/^\S+@\S+\.\S+$/.test(email)) return json({ error: "Valid email required" }, 400);
+
+      await db
+        .prepare("INSERT OR IGNORE INTO waitlist (id, email, city, source, created_at) VALUES (?, ?, ?, ?, ?)")
+        .bind(crypto.randomUUID(), email, city || "Bengaluru", source || "waitlist-page", Date.now())
+        .run();
+      return json({ ok: true });
+    }
+
     if (action === "signup") {
       const email = typeof body.email === "string" ? body.email.trim().toLowerCase().slice(0, 180) : "";
       if (!/^\S+@\S+\.\S+$/.test(email)) return json({ error: "Valid email required" }, 400);

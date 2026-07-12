@@ -324,9 +324,7 @@ export default function Home() {
           <span className="live-dot" />
           BENGALURU IS ONLINE
         </div>
-        <button className="nav-action" onClick={() => setModal(signedIn ? "city" : "signup")}>
-          + BRING MY CITY
-        </button>
+        <a className="nav-action" href="/waitlist">JOIN WAITLIST →</a>
       </header>
 
       <section className="playground" id="top" aria-label="Bengaluru neighborhood roast map">
@@ -462,7 +460,7 @@ export default function Home() {
       <footer>
         <div className="brand footer-brand"><span className="brand-mark">🔥</span><span>NAMMA ROAST</span></div>
         <p>MADE IN BENGALURU TRAFFIC</p>
-        <a href="https://projects.datameet.org/Municipal_Spatial_Data/bangalore/" target="_blank" rel="noreferrer">MAP DATA ↗</a>
+        <div className="footer-links"><a href="/waitlist">JOIN WAITLIST</a><a href="https://projects.datameet.org/Municipal_Spatial_Data/bangalore/" target="_blank" rel="noreferrer">MAP DATA ↗</a></div>
       </footer>
 
       {modal && (

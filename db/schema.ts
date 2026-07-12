@@ -36,3 +36,15 @@ export const cityRequests = sqliteTable("city_requests", {
   message: text("message").notNull(),
   createdAt: integer("created_at", { mode: "timestamp_ms" }).notNull(),
 });
+
+export const waitlist = sqliteTable(
+  "waitlist",
+  {
+    id: text("id").primaryKey(),
+    email: text("email").notNull(),
+    city: text("city").notNull(),
+    source: text("source").notNull(),
+    createdAt: integer("created_at", { mode: "timestamp_ms" }).notNull(),
+  },
+  (table) => [uniqueIndex("waitlist_email_idx").on(table.email)],
+);
